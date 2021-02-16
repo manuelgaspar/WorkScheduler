@@ -1,16 +1,20 @@
 <html>
     <head>
       {% if title %}
-      <title>{{ title }} - Scheduler</title>
+      <title>{{ title }} - Work Scheduler</title>
       {% else %}
-      <title>Welcome to Scheduler</title>
+      <title>Welcome to Work Scheduler</title>
       {% endif %}
     </head>
     <body>
         <div>
-            Scheduler:
+            Work Scheduler:
             <a href="{{ url_for('index') }}">Home</a>
+            {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">Login</a>
+            {% else %}
+            <a href="{{ url_for('logout') }}">Logout</a>
+            {% endif %}
         </div>
         <hr>
         {% with messages = get_flashed_messages() %}
