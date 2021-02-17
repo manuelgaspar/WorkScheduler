@@ -26,8 +26,10 @@ class User(UserMixin, db.Model):
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(200))
-    date = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    date = db.Column(db.Date, index=True)
+    time = db.Column(db.Time)
     recurrent = db.Column(db.Boolean, default=False)
+    email_alert = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
     def __repr__(self):

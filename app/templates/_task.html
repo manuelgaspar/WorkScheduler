@@ -1,0 +1,11 @@
+<table class="table table-hover">
+    <tr>
+        <td>
+            {% if task.time %}
+                {{ task.time.strftime('%H:%M') }}
+            {% endif %}
+            <br>
+            {{ task.body }}
+        </td>
+    </tr>
+</table>

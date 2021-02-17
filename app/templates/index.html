@@ -7,4 +7,10 @@
     {{ wtf.quick_form(form) }}
     <br>
     {% endif %}
+    {% if tasks|length > 0 %}
+    Today's tasks:
+    {% endif %}
+    {% for task in tasks %}
+        {% include '_task.html' %}
+    {% endfor %}
 {% endblock %}

@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField
-from wtforms.validators import DataRequired, Email, EqualTo
+from wtforms.fields.html5 import DateField, TimeField
+from wtforms.validators import DataRequired, Email, EqualTo, InputRequired, Optional
 from app.models import User
 
 class LoginForm(FlaskForm):
@@ -25,3 +26,11 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('This email is already in use.')
+
+class TaskForm(FlaskForm):
+    body = StringField('Task', validators=[DataRequired()])
+    date = DateField('Day', validators=[InputRequired()])
+    time = TimeField('Time', validators=[Optional()])
+    recurrent = BooleanField('Recurrent')
+    alert = BooleanField('Send email alert')
+    submit = SubmitField('Save')
