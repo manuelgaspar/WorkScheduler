@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>My Evo Calendar</title>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/evo/evo-calendar.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/evo/evo-calendar.midnight-blue.css') }}"/>
+        <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/evo/testing.css') }}"/>
+
+    </head>
+    <body>
+
+        <div id="calendar"></div>
+
+        <script type=text/javascript src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script type=text/javascript src="{{ url_for('static', filename='js/evo/evo-calendar.js') }}"></script>
+
+        <script>
+        // https://www.jqueryscript.net/time-clock/event-calendar-evo.html
+        // initialize your calendar, once the page's DOM is ready
+        $(document).ready(function() {
+            $('#calendar').evoCalendar({
+            calendarEvents: [],
+            theme:'Midnight Blue',
+            todayHighlight: true
+            });
+        })
+        </script>
+
+    </body>
+</html>

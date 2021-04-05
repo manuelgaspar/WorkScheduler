@@ -1,6 +1,6 @@
 from app import WorkScheduler, db
 from app.forms import LoginForm, RegistrationForm, TaskForm
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, jsonify
 from flask_login import current_user, login_user, logout_user, login_required
 from app.models import User, Task
 from werkzeug.urls import url_parse
@@ -66,3 +66,26 @@ def new_task():
         flash('Task creation successful')
         return redirect(url_for('index'))
     return render_template('new_task.html', title='New Task', form=form)
+
+@WorkScheduler.route('/cenas')
+def cenas():
+	return render_template('calendar_view_2.html')
+
+@WorkScheduler.route('/calendar_events')
+def calendar_events(start_date, end_date):
+    resp = jsonify({'success' : 1, 'result' : []})
+    resp.status_code = 200
+    print(resp)
+    print('cenas e coisas')
+    return resp
+
+@WorkScheduler.route('/cenas_2')
+def cenas_2():
+	return render_template('new_calendar_view.html')
+
+# https://www.reddit.com/r/learnpython/comments/90otn8/how_to_add_and_display_events_using_my_python/
+# https://codepen.io/peanav/pen/ulkof
+# https://codepen.io/SamMarkiewicz/pen/xjmEr
+# https://www.reddit.com/r/flask/comments/7zzbkd/calendar/
+# https://github.com/sukeesh/flask-calendar
+# https://www.reddit.com/r/learnpython/comments/2lk6lj/how_to_implement_a_web_calendar/
